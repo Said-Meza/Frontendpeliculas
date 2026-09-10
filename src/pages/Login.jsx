@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
@@ -5,79 +6,140 @@ import { iniciarSesion as login } from "../services/authService.js";
 import { useAuth } from "../context/AuthContext.jsx";
 
 const Login = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
 
-  const [error, setError] = useState("");
-  const [cargando, setCargando] = useState(false);
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
 
-  const { iniciarSesion } = useAuth();
+    const [error, setError] = useState("");
+    const [cargando, setCargando] = useState(false);
 
-  const navigate = useNavigate();
+    const { iniciarSesion } = useAuth();
 
-  const manejarSubmit = async (e) => {
-    e.preventDefault();
+    const navigate = useNavigate();
 
-    setError("");
-    setCargando(true);
+    const manejarSubmit = async (e) => {
 
-    try {
-      const datos = await login({
-        email,
-        password,
-      });
+        e.preventDefault();
 
-      iniciarSesion(datos.token, datos.usuario);
+        setError("");
+        setCargando(true);
 
-      if (datos.usuario.rol === "admin") {
-        navigate("/admin");
-      } else {
-        navigate("/");
-      }
-    } catch (error) {
-      setError(error.message);
-    } finally {
-      setCargando(false);
-    }
-  };
+        try {
 
-  return (
-    <main>
-      <h1>Iniciar sesión</h1>
+            const datos = await login({
+                email,
+                password,
+            });
 
-      <form onSubmit={manejarSubmit}>
-        <div>
-          <label htmlFor="email">Correo electrónico</label>
+            iniciarSesion(
+                datos.token,
+                datos.usuario
+            );
 
-          <input
-            id="email"
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
+            if (datos.usuario.rol === "admin") {
+                navigate("/admin");
+            } else {
+                navigate("/");
+            }
 
-        <div>
-          <label htmlFor="password">Contraseña</label>
+        } catch (error) {
 
-          <input
-            id="password"
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
+            setError(error.message);
 
-        {error && <p>{error}</p>}
+        } finally {
 
-        <button type="submit" disabled={cargando}>
-          {cargando ? "Iniciando..." : "Iniciar sesión"}
-        </button>
-      </form>
-    </main>
-  );
+            setCargando(false);
+
+        }
+    };
+
+    return (
+        <main className="login-page">
+
+            <section className="login-container">
+
+                <div className="login-header">
+
+                    <span className="login-subtitle">
+                        CINE MATCH
+                    </span>
+
+                    <h1>
+                        Bienvenido
+                    </h1>
+
+                    <p>
+                        Inicia sesión para continuar explorando el catálogo.
+                    </p>
+
+                </div>
+
+                <form
+                    className="login-form"
+                    onSubmit={manejarSubmit}
+                >
+
+                    <div className="login-group">
+
+                        <label htmlFor="email">
+                            Correo electrónico
+                        </label>
+
+                        <input
+                            id="email"
+                            type="email"
+                            placeholder="correo@ejemplo.com"
+                            value={email}
+                            onChange={(e) =>
+                                setEmail(e.target.value)
+                            }
+                            required
+                        />
+
+                    </div>
+
+                    <div className="login-group">
+
+                        <label htmlFor="password">
+                            Contraseña
+                        </label>
+
+                        <input
+                            id="password"
+                            type="password"
+                            placeholder="Ingresa tu contraseña"
+                            value={password}
+                            onChange={(e) =>
+                                setPassword(e.target.value)
+                            }
+                            required
+                        />
+
+                    </div>
+
+                    {error && (
+                        <p className="login-error">
+                            {error}
+                        </p>
+                    )}
+
+                    <button
+                        className="login-button"
+                        type="submit"
+                        disabled={cargando}
+                    >
+                        {cargando
+                            ? "Iniciando..."
+                            : "Iniciar sesión"}
+                    </button>
+
+                </form>
+
+            </section>
+
+        </main>
+    );
 };
 
 export default Login;
+
