@@ -1,0 +1,298 @@
+#root {
+    min-height: 100vh;
+}
+
+/* NAVBAR */
+
+.navbar {
+    height: 70px;
+    background: #17191f;
+    border-bottom: 1px solid #292d35;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 45px;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.navbar-logo {
+    font-size: 25px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.navbar-links {
+    display: flex;
+    gap: 10px;
+}
+
+.navbar-links button {
+    background: transparent;
+    border: none;
+    color: #b7bbc4;
+    padding: 10px 15px;
+    border-radius: 7px;
+}
+
+.navbar-links button:hover {
+    background: #252932;
+    color: white;
+}
+
+/* ADMIN */
+
+.admin-page {
+    width: min(1200px, 92%);
+    margin: auto;
+    padding-bottom: 60px;
+}
+
+.admin-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 30px;
+    padding: 45px 0 30px;
+}
+
+.admin-subtitle {
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: #8f96a3;
+}
+
+.admin-header h1 {
+    font-size: 36px;
+    margin: 8px 0;
+}
+
+.admin-header p {
+    color: #9298a4;
+}
+
+.admin-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.btn-primary,
+.btn-secondary {
+    border: none;
+    padding: 12px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: #ffffff;
+    color: #111318;
+}
+
+.btn-secondary {
+    background: #252932;
+    color: white;
+}
+
+.btn-primary:hover,
+.btn-secondary:hover {
+    opacity: .85;
+}
+
+/* CATALOGO */
+
+.catalogo-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    margin: 20px 0 25px;
+}
+
+.catalogo-header h2 {
+    font-size: 25px;
+    margin-bottom: 5px;
+}
+
+.catalogo-header p {
+    color: #858b97;
+    font-size: 14px;
+}
+
+.buscador {
+    width: 280px;
+    padding: 12px 15px;
+
+    background: #181b21;
+    border: 1px solid #30343d;
+    border-radius: 8px;
+
+    color: white;
+    outline: none;
+}
+
+.buscador:focus {
+    border-color: #666d79;
+}
+
+/* GRID */
+
+.peliculas-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 22px;
+}
+
+/* CARD */
+
+.pelicula-card {
+    background: #181b21;
+    border: 1px solid #292d35;
+    border-radius: 12px;
+    overflow: hidden;
+
+    transition: transform .2s, border-color .2s;
+}
+
+.pelicula-card:hover {
+    transform: translateY(-5px);
+    border-color: #4a505c;
+}
+
+.poster-container {
+    position: relative;
+}
+
+.poster-container img {
+    width: 100%;
+    height: 330px;
+    display: block;
+    object-fit: cover;
+}
+
+.rating {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+
+    background: rgba(0, 0, 0, .8);
+    padding: 6px 9px;
+    border-radius: 6px;
+
+    font-size: 13px;
+}
+
+.pelicula-info {
+    padding: 15px;
+}
+
+.pelicula-info h3 {
+    font-size: 18px;
+    margin-bottom: 7px;
+
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.pelicula-meta {
+    color: #9298a4;
+    font-size: 14px;
+    margin-bottom: 15px;
+}
+
+.card-actions {
+    display: flex;
+    gap: 6px;
+}
+
+.card-actions button {
+    flex: 1;
+
+    padding: 8px 5px;
+
+    background: #282c35;
+    color: white;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 12px;
+}
+
+.card-actions button:hover {
+    background: #383e49;
+}
+
+.card-actions .btn-delete:hover {
+    background: #6d3030;
+}
+
+/* MENSAJES */
+
+.mensaje {
+    text-align: center;
+    padding: 50px;
+    color: #999faa;
+}
+
+.error {
+    color: #ff7777;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+
+    .peliculas-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width: 700px) {
+
+    .admin-header,
+    .catalogo-header {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .admin-actions {
+        flex-wrap: wrap;
+    }
+
+    .buscador {
+        width: 100%;
+    }
+
+    .peliculas-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
+@media (max-width: 450px) {
+
+    .navbar {
+        padding: 0 15px;
+    }
+
+    .navbar-links {
+        display: none;
+    }
+
+    .peliculas-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .admin-header h1 {
+        font-size: 28px;
+    }
+
+}
