@@ -457,3 +457,190 @@
 
 }
 
+
+
+/* =========================
+   REGISTRO
+========================= */
+
+.registro-page {
+    min-height: 100vh;
+    padding: 60px 20px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    box-sizing: border-box;
+}
+
+.registro-container {
+    width: 100%;
+    max-width: 460px;
+
+    padding: 40px;
+    box-sizing: border-box;
+
+    background: #ffffff;
+    border-radius: 20px;
+
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.08);
+}
+
+.registro-header {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.registro-subtitle {
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 2px;
+    opacity: 0.6;
+}
+
+.registro-header h1 {
+    margin: 10px 0 8px;
+    font-size: 32px;
+}
+
+.registro-header p {
+    margin: 0;
+    color: #666666;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.registro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.registro-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.registro-group label {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.registro-group input {
+    width: 100%;
+    box-sizing: border-box;
+
+    padding: 13px 15px;
+
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    font-family: inherit;
+    font-size: 15px;
+
+    outline: none;
+
+    transition:
+        border-color 0.2s,
+        box-shadow 0.2s;
+}
+
+.registro-group input:focus {
+    border-color: #6c63ff;
+
+    box-shadow:
+        0 0 0 3px rgba(108, 99, 255, 0.12);
+}
+
+.registro-error {
+    margin: -5px 0 0;
+
+    padding: 10px 12px;
+
+    border-radius: 8px;
+
+    background: #fff1f1;
+    color: #c62828;
+
+    font-size: 14px;
+}
+
+.registro-button {
+    width: 100%;
+
+    padding: 13px 20px;
+
+    border: none;
+    border-radius: 10px;
+
+    background: #6c63ff;
+    color: #ffffff;
+
+    font-family: inherit;
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s,
+        opacity 0.2s;
+}
+
+.registro-button:hover:not(:disabled) {
+    transform: translateY(-2px);
+}
+
+.registro-button:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+}
+
+.registro-cancelar {
+    width: 100%;
+
+    padding: 11px 20px;
+
+    border: 1px solid #d9d9d9;
+    border-radius: 10px;
+
+    background: #ffffff;
+    color: #444444;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition: 0.2s ease;
+}
+
+.registro-cancelar:hover {
+    background: #f5f5f5;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 500px) {
+
+    .registro-page {
+        padding: 30px 15px;
+    }
+
+    .registro-container {
+        padding: 28px 22px;
+    }
+
+    .registro-header h1 {
+        font-size: 28px;
+    }
+
+}
+
+
+

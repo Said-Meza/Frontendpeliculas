@@ -8,6 +8,7 @@ import Admin from "./pages/Admin.jsx";
 import NuevaPelicula from "./pages/NuevaPelicula.jsx";
 import EditarPelicula from "./pages/EditarPelicula.jsx";
 import DetallePelicula from "./pages/DetallePelicula.jsx";
+import Registro from "./pages/Registro.jsx";
 
 import ProtectedRoute from "./components/ProtectedRoute.jsx";
 
@@ -24,6 +25,8 @@ function App() {
                     path="/"
                     element={<Home />}
                 />
+                
+                <Route path="/registro" element={<Registro />} />
 
                 <Route
                     path="/login"

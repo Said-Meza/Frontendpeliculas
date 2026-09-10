@@ -1,20 +1,19 @@
+
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-import { iniciarSesion as login } from "../services/authService.js";
-import { useAuth } from "../context/AuthContext.jsx";
+import { registrarUsuario } from "../services/authService.js";
 
-const Login = () => {
+const Registro = () => {
 
+    const navigate = useNavigate();
+
+    const [nombre, setNombre] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const [error, setError] = useState("");
     const [cargando, setCargando] = useState(false);
-
-    const { iniciarSesion } = useAuth();
-
-    const navigate = useNavigate();
 
     const manejarSubmit = async (e) => {
 
@@ -25,21 +24,15 @@ const Login = () => {
 
         try {
 
-            const datos = await login({
+            await registrarUsuario({
+                nombre,
                 email,
-                password,
+                password
             });
 
-            iniciarSesion(
-                datos.token,
-                datos.usuario
-            );
+            alert("Usuario creado correctamente");
 
-            if (datos.usuario.rol === "admin") {
-                navigate("/admin");
-            } else {
-                navigate("/");
-            }
+            navigate("/login");
 
         } catch (error) {
 
@@ -53,32 +46,51 @@ const Login = () => {
     };
 
     return (
-        <main className="login-page">
+        <main className="registro-page">
 
-            <section className="login-container">
+            <section className="registro-container">
 
-                <div className="login-header">
+                <div className="registro-header">
 
-                    <span className="login-subtitle">
+                    <span className="registro-subtitle">
                         CINE MATCH
                     </span>
 
                     <h1>
-                        Bienvenido
+                        Crear cuenta
                     </h1>
 
                     <p>
-                        Inicia sesión para continuar explorando el catálogo.
+                        Regístrate para comenzar a explorar nuestro catálogo.
                     </p>
 
                 </div>
 
                 <form
-                    className="login-form"
+                    className="registro-form"
                     onSubmit={manejarSubmit}
                 >
 
-                    <div className="login-group">
+                    <div className="registro-group">
+
+                        <label htmlFor="nombre">
+                            Nombre
+                        </label>
+
+                        <input
+                            id="nombre"
+                            type="text"
+                            placeholder="Ingresa tu nombre"
+                            value={nombre}
+                            onChange={(e) =>
+                                setNombre(e.target.value)
+                            }
+                            required
+                        />
+
+                    </div>
+
+                    <div className="registro-group">
 
                         <label htmlFor="email">
                             Correo electrónico
@@ -97,7 +109,7 @@ const Login = () => {
 
                     </div>
 
-                    <div className="login-group">
+                    <div className="registro-group">
 
                         <label htmlFor="password">
                             Contraseña
@@ -106,7 +118,7 @@ const Login = () => {
                         <input
                             id="password"
                             type="password"
-                            placeholder="Ingresa tu contraseña"
+                            placeholder="Crea una contraseña"
                             value={password}
                             onChange={(e) =>
                                 setPassword(e.target.value)
@@ -117,37 +129,30 @@ const Login = () => {
                     </div>
 
                     {error && (
-                        <p className="login-error">
+                        <p className="registro-error">
                             {error}
                         </p>
                     )}
 
                     <button
-                        className="login-button"
+                        className="registro-button"
                         type="submit"
                         disabled={cargando}
                     >
                         {cargando
-                            ? "Iniciando..."
-                            : "Iniciar sesión"}
+                            ? "Creando cuenta..."
+                            : "Crear cuenta"}
                     </button>
-
-                </form>
-
-                <div className="login-registro">
-
-                    <span>
-                        ¿No tienes una cuenta?
-                    </span>
 
                     <button
                         type="button"
-                        onClick={() => navigate("/registro")}
+                        className="registro-cancelar"
+                        onClick={() => navigate("/login")}
                     >
-                        Crear cuenta
+                        Ya tengo una cuenta
                     </button>
 
-                </div>
+                </form>
 
             </section>
 
@@ -155,5 +160,5 @@ const Login = () => {
     );
 };
 
-export default Login;
+export default Registro;
 

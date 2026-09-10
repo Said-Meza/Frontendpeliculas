@@ -7,7 +7,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background: #0f1115;
-    color: #ffffff;
+    color: #cf7777;
     min-width: 320px;
 }
 
@@ -274,7 +274,7 @@ button {
 }
 
 .detalle-descripcion {
-    border-top: 1px solid #eeeeee;
+    border-top: 1px solid #0a0808;
     padding-top: 25px;
 }
 
@@ -334,5 +334,39 @@ button {
     }
 
 }
+
+
+.login-registro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 6px;
+    
+    margin-top: 25px;
+
+    font-size: 14px;
+    color: #c91111;
+    
+}
+
+.login-registro button {
+    padding: 0;
+
+    border: none;
+    background: none;
+
+    color: #6c63ff;
+
+    font-family: inherit;
+    font-size: 14px;
+    font-weight: 700;
+
+    cursor: pointer;
+}
+
+.login-registro button:hover {
+    text-decoration: underline;
+}
+
 
 

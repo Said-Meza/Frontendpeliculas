@@ -22,3 +22,27 @@ export const iniciarSesion = async (credenciales) => {
 
     return datos;
 };
+
+
+export const registrarUsuario = async (datosUsuario) => {
+
+    const respuesta = await fetch(`${API_URL}/auth/registro`, {
+        method: "POST",
+
+        headers: {
+            "Content-Type": "application/json"
+        },
+
+        body: JSON.stringify(datosUsuario)
+    });
+
+    const datos = await respuesta.json();
+
+    if (!respuesta.ok) {
+        throw new Error(
+            datos.mensaje || "Error al crear usuario"
+        );
+    }
+
+    return datos;
+};
